@@ -1,0 +1,152 @@
+import React, { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X, ShoppingBag, PhoneCallIcon, MessageCircleCode } from 'lucide-react';
+import { useNavigate, useLocation } from 'react-router-dom';
+import logo from "../assets/logo-Photoroom.png";
+
+const Navbar = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const navItems = [
+    { id: 'home', label: 'Home', path: '/' },
+    { id: 'service', label: 'Services', path: '/service' },
+    { id: 'programs', label: 'Programs', path: '/programs' },
+    { id: 'pricing', label: 'Pricing', path: '/pricing' },
+    { id: 'shop', label: 'Shop', path: '/shop' },
+  ];
+
+  const handleNavClick = (path) => {
+    if (path) {
+      navigate(path);
+    }
+    setMobileMenuOpen(false);
+  };
+
+  return (
+<nav className="sticky top-0 z-50 bg-[#e5eae56a] border-b border-gray-200 w-full">
+
+      <div className="w-full mx-auto px-5 sm:px-[0%] lg:px-[5%] backdrop-blur-lg">
+        <div className="flex justify-between items-center h-20">
+
+          {/* Logo */}
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center cursor-pointer"
+            onClick={() => handleNavClick('/')}
+          >
+            <img src={logo} alt="logo" className="w-[90px]" />
+          </motion.div>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center space-x-8">
+            {navItems.map((item) => (
+              <motion.button
+                key={item.id}
+                whileHover={{ y: -2 }}
+                onClick={() => handleNavClick(item.path)}
+                className={`font-medium ${
+                  location.pathname === item.path
+                    ? 'text-[#6FAF9E]'
+                    : 'text-[#1F2A44] hover:text-[#6FAF9E]'
+                }`}
+              >
+                {item.label}
+              </motion.button>
+            ))}
+          </div>
+
+          {/* Desktop CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <button
+              className="relative p-2 text-[#1F2A44] hover:text-[#6FAF9E]"
+              onClick={() => handleNavClick('store')}
+            >
+              <ShoppingBag className="w-6 h-6" />
+              <span className="absolute top-1 right-0 w-2.5 h-2.5 bg-[#D6B25E] rounded-full border-2 border-[#F7F8F6]"></span>
+            </button>
+
+            <button
+              onClick={() => handleNavClick('book')}
+              className="bg-[#1F2A44] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#6FAF9E] transition shadow-lg"
+            >
+              Book Consultation
+            </button>
+          </div>
+
+          {/* Mobile Toggle */}
+          <div className="md:hidden">
+            <button
+              onClick={() => setMobileMenuOpen(true)}
+              className="text-[#1F2A44] p-2"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* MOBILE SLIDE MENU */}
+      <div className={`fixed top-0 right-0 h-full w-[65%] max-w-sm backdrop-blur-xl z-50 shadow-2xl transition-transform duration-500 ease-in-out
+        ${mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'}`}>
+
+        <div className="flex flex-col h-full p-6 text-white">
+
+          <div className="flex justify-end mb-10">
+            <button onClick={() => setMobileMenuOpen(false)}>
+              <X className="w-7 h-7" />
+            </button>
+          </div>
+
+          <div className="space-y-3">
+            {navItems.map((item) => (
+              <button
+                key={item.id}
+                onClick={() => handleNavClick(item.path)}
+                className={`block w-full text-left px-4 py-3.5 rounded-lg text-lg font-medium transition ${
+                  location.pathname === item.path
+                    ? 'bg-white text-[#6FAF9E]'
+                    : 'text-white hover:bg-white/20'
+                }`}
+              >
+                {item.label}
+              </button>
+            ))}
+          </div>
+
+          <div className="mt-auto space-y-4 pt-8">
+            <button
+              onClick={() => handleNavClick('store')}
+              className="text-[13px] lg:text-[17px] w-full flex items-center justify-center gap-2 bg-white/20 text-white py-3.5 rounded-tl-3xl rounded-br-3xl font-semibold hover:border-2 hover:text-brand-navy transition"
+            >
+              <PhoneCallIcon className="w-5 h-5" />
+             Contact Us
+            </button>
+
+            <button
+              onClick={() => handleNavClick('book')}
+              className="text-[13px] gap-2 lg:text-[17px] flex justify-center items-center w-full bg-white text-[#6FAF9E] py-3.5 rounded-tr-3xl rounded-bl-3xl font-semibold shadow-xl hover:bg-brand-sage hover:text-white transition"
+            >
+              <MessageCircleCode className="w-5 h-5"/>
+              Book Consultation
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Backdrop */}
+      {mobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black bg-opacity-40 z-40"
+          onClick={() => setMobileMenuOpen(false)}
+        />
+      )}
+    </nav>
+  );
+};
+
+export default Navbar;

@@ -1,0 +1,6 @@
+# Allow all crawlers
+User-agent: *
+Disallow:
+
+# Sitemap
+Sitemap: https://www.spedeveryday.com/sitemap.xml/

@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Build output
+build/
+dist/
+
+# Log files
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDEs & Text editors
+.vscode/
+.idea/
+
+# .env files (Sensitive data)
+.env
+.env.local
+.env.*.local
+
+# npm package lock
+package-lock.json
+
+# Yarn package lock
+yarn.lock
+
+# Dependency directories (for yarn)
+.pnp
+.pn
