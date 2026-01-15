@@ -32,4 +32,4 @@ A React-based website promoting autism awareness, featuring smooth animations wi
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/autism-awareness-website.git
+   git clone https://github.com/Justmide/Autism-Website.git
