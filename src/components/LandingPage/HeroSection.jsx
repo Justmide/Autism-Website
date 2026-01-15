@@ -15,7 +15,7 @@ const HeroSection = () => {
      
      {/* Main text */}
      <div className='mt-7' data-aos="fade-up" data-aos-delay="400">
-        <p className='text-[20px] lg:text-6xl md:text-4xl sm:text-4xl leading-[1.1] font-heading font-semibold lg:text-start text-center'>Autism Support for Families in <span className='text-brand-sage'>USA & the Diaspora</span></p> 
+        <p className='text-[20px] lg:text-6xl md:text-4xl sm:text-4xl leading-[1.1] font-heading font-semibold lg:text-start text-center'>Autism Support for Families in <span className='text-brand-sage'>WORLDWIDE</span></p> 
 
         {/* sub text  */}
         <p className='lg:mt-8 mt-4 font-sans text-gray-500 text-[16px] sm:text-[17px] lg:text-start text-center '>Professional guidance, education, and parent coaching designed to bring clarity, confidence, and progress to your family's autism journey.</p>
