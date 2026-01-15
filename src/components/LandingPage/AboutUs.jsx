@@ -17,7 +17,7 @@ const AboutUs = () => {
         <p className='text-[#cdcfd2] lg:text-[18px] text-[15px] px-2 font-sans pt-6' data-aos="fade-down">We combine clinical expertise with deep cultural understanding to provide autism support that truly resonates with Nigerian and diaspora families.</p>
 
         {/* sub text list */}
-        <div className='pt-8 flex gap-6 flex-col lg:flex ' data-aos="fade-left">
+        <div className='pt-8 flex gap-6 flex-col lg:flex ' data-aos="fade-up">
             {/* text */}
             <div className='flex gap-4'>
                 <div className='w-[50px] h-[50px] rounded-full flex justify-center items-center bg-[#2e4557]'>
