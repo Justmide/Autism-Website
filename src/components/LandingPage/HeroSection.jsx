@@ -22,11 +22,11 @@ const HeroSection = () => {
      </div>
 
      {/* buttons */}
-     <div className='mt-9 gap-3 flex flex-col sm:flex-row justify-center lg:justify-start' data-aos="zoom-in" data-aos-delay="600">
-        <button className='px-4 py-3 rounded-tl-3xl rounded-br-3xl bg-[#1F2A44] text-white font-heading rounded-[6px] hover:bg-[#6FAF9E] transition shadow-lg'> 
+     <div className='mt-9 gap-3 flex items-center flex-col sm:flex-row justify-center lg:justify-start' data-aos="zoom-in" data-aos-delay="600">
+        <button className='lg:w-[200px] w-[300px] px-4 py-3 rounded-tl-3xl rounded-br-3xl bg-[#1F2A44] text-white font-heading rounded-[6px] hover:bg-[#6FAF9E] transition shadow-lg'> 
            Book Consultation
             </button>
-              <button className='border-2 border-brand-navy px-4 py-3 rounded-tl-3xl rounded-br-3xl bg-white font-heading rounded-[6px] hover:bg-[#c5c9c8] transition shadow-lg'> 
+              <button className='lg:w-[200px] w-[300px] border-2 border-brand-navy px-4 py-3 rounded-tl-3xl rounded-br-3xl bg-white font-heading rounded-[6px] hover:bg-[#c5c9c8] transition shadow-lg'> 
           Join Parent Program
             </button>
      </div>
