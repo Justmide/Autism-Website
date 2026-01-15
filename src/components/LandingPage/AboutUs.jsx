@@ -53,7 +53,7 @@ const AboutUs = () => {
     </div>
 
     {/* right side */}
-     <div className='lg:w-1/2 w-full flex justify-center items-center' data-aos="fade-right">
+     <div className='lg:w-1/2 w-full flex justify-center items-center' data-aos="fade-down">
      <img 
      src={SpedEveryday} 
      alt="why choose us"
