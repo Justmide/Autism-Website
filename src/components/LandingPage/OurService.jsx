@@ -36,7 +36,7 @@ const OurService = () => {
       id: 3,
       icon: <MessageCircle className="w-6 h-6" />,
       title: 'WhatsApp Community',
-      description: 'Daily support and guidance in our parent community.',
+      description: 'Daily support and guidance for parent community.',
       bgColor: 'bg-[#25D366]',
       textColor: 'text-white',
       delay: 300
@@ -56,7 +56,7 @@ const OurService = () => {
     {
       id: 5,
       icon: <HeartHandshake className="w-6 h-6" />,
-      title: 'Family Therapy',
+      title: 'Family Support',
       description: 'Supporting the entire family unit in understanding and managing autism.',
       bgColor: 'bg-brand-sage',
       textColor: 'text-white',

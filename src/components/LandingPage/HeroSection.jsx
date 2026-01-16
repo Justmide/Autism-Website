@@ -10,12 +10,12 @@ const HeroSection = () => {
     {/* top text */}
     <div className='flex items-center justify-center font-sans text-[15px] bg-[#eaf1ee] border-brand-sage rounded-full h-[36px] w-full max-w-[320px]' data-aos="fade-down" data-aos-delay="200">
         <div className='w-[8px] h-[8px] rounded-full bg-brand-gold flex mr-1 ml-[-20px] font-sans'></div>
-        <p className='text-[12px] lg:text-[14px]'>Supporting Families in USA & Diaspora</p>
+        <p className='text-[12px] lg:text-[14px]'>Supporting Families Worldwide</p>
     </div>
      
      {/* Main text */}
      <div className='mt-7' data-aos="fade-up" data-aos-delay="400">
-        <p className='text-[20px] lg:text-6xl md:text-4xl sm:text-4xl leading-[1.1] font-heading font-semibold lg:text-start text-center'>Autism Support for Families <span className='text-brand-sage'>WORLDWIDE</span></p> 
+        <p className='text-[20px] lg:text-5xl md:text-3xl sm:text-4xl leading-[1.2] font-heading font-semibold lg:text-start text-center'>Autism Support for Families <span className='text-brand-sage'>Worldwide</span></p> 
 
         {/* sub text  */}
         <p className='lg:mt-8 mt-4 font-sans text-gray-500 text-[16px] sm:text-[17px] lg:text-start text-center '>Professional guidance, education, and parent coaching designed to bring clarity, confidence, and progress to your family's autism journey.</p>

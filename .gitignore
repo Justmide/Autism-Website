@@ -30,3 +30,6 @@ yarn.lock
 # Dependency directories (for yarn)
 .pnp
 .pn
+
+# Snyk Security Extension - AI Rules (auto-generated)
+.github/instructions/snyk_rules.instructions.md

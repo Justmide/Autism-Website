@@ -14,7 +14,7 @@ const AboutUs = () => {
     <div className='pt-[25px]'>
         <h1 className='text-white font-heading text-[20px] lg:text-[30px] sm:text-[35px] font-semibold' data-aos="fade-up">Why Choose SpedEveryday?</h1>
         {/* sub text */}
-        <p className='text-[#cdcfd2] lg:text-[18px] text-[15px] px-2 font-sans pt-6' data-aos="fade-down">We combine clinical expertise with deep cultural understanding to provide autism support that truly resonates with Nigerian and diaspora families.</p>
+        <p className='text-[#cdcfd2] lg:text-[18px] text-[15px] px-2 font-sans pt-6' data-aos="fade-down">We combine research with deep cultural understanding to provide autism support that truly resonates with families.</p>
 
         {/* sub text list */}
         <div className='pt-8 flex gap-6 flex-col lg:flex ' data-aos="fade-up">
@@ -35,7 +35,7 @@ const AboutUs = () => {
                 </div>
                 <div>
                     <h1 className='text-white text-[20px] font-heading font-semibold pt-1'>Culturally Responsive</h1>
-                <p className='text-[#b7bbc2] font-sans font-thin text-[15px]'>Understanding Nigerian family dynamics and diaspora experiences.</p>
+                <p className='text-[#b7bbc2] font-sans font-thin text-[15px]'>Understanding family dynamics within cultural context.</p>
                 </div>
             </div>
             {/* Ethical & Professional  */}

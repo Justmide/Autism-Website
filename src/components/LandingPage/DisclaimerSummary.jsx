@@ -16,37 +16,12 @@ const DisclaimerSummary = () => {
             <div className="flex-1">
               <h3 className="lg:text-2xl sm:text-xl text-[20px] font-bold text-brand-navy mb-3">Important Disclaimer</h3>
            <p className="text-brand-navy/70 leading-relaxed mb-4 text-[13px] lg:text-[17px]">
-  SpedEveryday provides educational support and parent coaching for families navigating autism. Our functional guidance complements professional medical care.
+ SpedEveryday provides educational support and parent coaching for families navigating autism. Our functional guidance complements professional medical care. 
+WE DO NOT OFFER MEDICAL DIAGNOSIS, TREATMENT OR EMERGENCY MEDICAL SERVICES.
 </p>
               
               {/* Quick Points */}
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
-                    <X className="w-3 h-3 text-red-600" />
-                  </div>
-                  <span className="text-[13px] text-brand-navy/80">Not medical diagnosis or treatment</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-green-600" />
-                  </div>
-                  <span className="text-[13px] text-brand-navy/80">Educational guidance & support</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 flex items-center justify-center mt-0.5">
-                    <X className="w-3 h-3 text-red-600" />
-                  </div>
-                  <span className="text-[13px] text-brand-navy/80">Not emergency medical services</span>
-                </div>
-                <div className="flex items-start gap-3">
-                  <div className="flex-shrink-0 w-5 h-5 rounded-full bg-green-100 flex items-center justify-center mt-0.5">
-                    <Check className="w-3 h-3 text-green-600" />
-                  </div>
-                  <span className="text-[13px] text-brand-navy/80">Ethical & professional standards</span>
-                </div>
-              </div>
-
+     
               
 
               {/* Read More Button */}
