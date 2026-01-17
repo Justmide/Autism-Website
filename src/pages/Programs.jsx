@@ -92,7 +92,7 @@ const Programs = () => {
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-sage/10 text-brand-navy font-medium text-sm mb-6">
             <span className="w-4 h-3 rounded-full bg-brand-gold"></span>
-            PILOT 6-WEEK AUTISM PARENT PROGRAM • USA BASED
+            PILOT 6-WEEK AUTISM PARENT PROGRAM
           </div>
           <h1 className="text-3xl md:text-5xl font-bold text-brand-navy mb-4">
             Understanding & Supporting Your Child with Autism
