@@ -360,7 +360,7 @@ const Programs = () => {
               <h3 className="lg:text-2xl text-lg font-bold">14-Day Satisfaction Guarantee</h3>
             </div>
             <p className="lg:text-lg text-[14px] mb-6">
-              We're confident you'll find immense value in our pilot program. If you're not satisfied after the first two sessions, we'll refund your investment, no questions asked.
+              We're confident you'll find immense value in our pilot program.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-8">. 
               <div className="text-center">
@@ -373,10 +373,6 @@ const Programs = () => {
                 <div className="text-sm text-white/80">Sessions Included</div>
               </div>
               <div className="hidden sm:block h-12 w-px bg-white/30"></div>
-              <div className="text-center">
-                <div className="text-3xl font-bold mb-1">100%</div>
-                <div className="text-sm text-white/80">Refund Policy</div>
-              </div>
             </div>
           </div>
         </motion.div>
