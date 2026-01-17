@@ -13,7 +13,23 @@ import Programs from "./pages/Programs"
 function App() {
   useEffect(() => {
     AOS.init();
-  }, [])
+  },
+   [])
+     useEffect(() => {
+    if(isLoading){
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      })
+    
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    },3000); 
+
+    return () => clearTimeout(timer);
+    }
+ }, [isLoading]);
+
 
   return (
     <div className="App">
