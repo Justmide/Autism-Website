@@ -7,30 +7,6 @@ import ReadyToGetStarted from '../components/LandingPage/ReadyToGetStarted';
 import DisclaimerSummary from '../components/LandingPage/DisclaimerSummary';
 
 const LandingPage = () => {
-  const [showScrollTop, setShowScrollTop] = useState(false);
-
-  // Show/Hide scroll to top button
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 400) {
-        setShowScrollTop(true);
-      } else {
-        setShowScrollTop(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  // Scroll to top function
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
-  };
-
   return (
     <>
       <section id="home">
