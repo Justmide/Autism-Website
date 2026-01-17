@@ -40,7 +40,7 @@ function App() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Show loader on EVERY location change
+  
   useEffect(() => {
     setIsLoading(true);
     
@@ -48,7 +48,7 @@ function App() {
       setIsLoading(false);
       // Reinitialize AOS after loading
       setTimeout(() => AOS.refresh(), 100);
-    }, 800); // Shorter time for navigation
+    }, 1800); //time
 
     return () => clearTimeout(timer);
   }, [location.pathname]); // Trigger on pathname change
