@@ -7,6 +7,7 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 import DisclaimerPage from "./pages/DisclaimerPage"
 import Services from "./pages/Services"
+import Programs from "./pages/Programs"
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/" element={<LandingPage />} />
         <Route path="/disclaimer" element={<DisclaimerPage />} /> 
         <Route path="/service" element={<Services />} />
+        <Route path="/programs" element={<Programs />} />
       </Routes>
       <Footer />
     </div>

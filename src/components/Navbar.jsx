@@ -120,7 +120,7 @@ const Navbar = () => {
           <div className="mt-auto space-y-4 pt-8">
             <button
               onClick={() => handleNavClick('store')}
-              className="text-[13px] lg:text-[17px] w-full flex items-center justify-center gap-2 bg-white/20 text-white py-3.5 rounded-tl-3xl rounded-br-3xl font-semibold hover:border-2 hover:text-brand-navy transition"
+              className="hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-br-sm hover:rounded-tr-3xl duration-300 hover:shadow-lg text-[13px] lg:text-[17px] w-full flex items-center justify-center gap-2 bg-white/20 text-white py-3.5 rounded-tl-3xl rounded-br-3xl font-semibold hover:border-2 hover:text-brand-navy transition"
             >
               <PhoneCallIcon className="w-5 h-5" />
              Contact Us
@@ -128,7 +128,7 @@ const Navbar = () => {
 
             <button
               onClick={() => handleNavClick('book')}
-              className="text-[13px] gap-2 lg:text-[17px] flex justify-center items-center w-full bg-white text-[#6FAF9E] py-3.5 rounded-tr-3xl rounded-bl-3xl font-semibold shadow-xl hover:bg-brand-sage hover:text-white transition"
+              className="hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-tr-3xl duration-300 hover:shadow-lg text-[13px] gap-2 lg:text-[17px] flex justify-center items-center w-full bg-white text-[#6FAF9E] py-3.5 rounded-tr-3xl rounded-bl-3xl font-semibold shadow-xl hover:bg-brand-sage hover:text-white transition"
             >
               <MessageCircleCode className="w-5 h-5"/>
               Book Consultation

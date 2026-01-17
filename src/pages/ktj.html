@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en" style="height: auto; min-height: 100%;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SpedEveryday - Autism Support Platform</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            bg: '#F7F8F6',
+                            navy: '#1F2A44',
+                            sage: '#6FAF9E',
+                            gold: '#D6B25E',
+                            white: '#FFFFFF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+                        heading: ['"Outfit"', 'sans-serif'],
+                    },
+                    boxShadow: {
+                        'soft': '0 4px 20px -2px rgba(31, 42, 68, 0.05)',
+                        'card': '0 10px 30px -5px rgba(31, 42, 68, 0.08)',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #F7F8F6;
+            color: #1F2A44;
+        }
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Outfit', sans-serif;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active {
+            display: block;
+        }
+    </style>
+</head>
+<body class="antialiased flex flex-col" style="height: auto; min-height: 100%;">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-[#F7F8F6]/95 backdrop-blur-sm border-b border-brand-navy/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer" onclick="showPage('home')">
+                    <div class="w-10 h-10 bg-brand-navy rounded-lg flex items-center justify-center text-brand-sage">
+                        <i data-lucide="heart-handshake" class="w-6 h-6"></i>
+                    </div>
+                    <span class="font-heading font-bold text-2xl text-brand-navy tracking-tight">SpedEveryday</span>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#" onclick="showPage('home')" class="nav-link text-brand-navy font-medium hover:text-brand-sage transition-colors">Home</a>
+                    <a href="#" onclick="showPage('services')" class="nav-link text-brand-navy font-medium hover:text-brand-sage transition-colors">Services</a>
+                    <a href="#" onclick="showPage('programs')" class="nav-link text-brand-navy font-medium hover:text-brand-sage transition-colors">Programs</a>
+                    <a href="#" onclick="showPage('pricing')" class="nav-link text-brand-navy font-medium hover:text-brand-sage transition-colors">Pricing</a>
+                    <a href="#" onclick="showPage('store')" class="nav-link text-brand-navy font-medium hover:text-brand-sage transition-colors">Store</a>
+                </div>
+
+                <!-- CTA & Cart -->
+                <div class="hidden md:flex items-center space-x-4">
+                    <button class="relative p-2 text-brand-navy hover:text-brand-sage transition-colors" onclick="showPage('store')">
+                        <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                        <span class="absolute top-1 right-0 w-2.5 h-2.5 bg-brand-gold rounded-full border-2 border-[#F7F8F6]"></span>
+                    </button>
+                    <button onclick="showPage('book')" class="bg-brand-navy text-white px-6 py-2.5 rounded-full font-medium hover:bg-brand-sage transition-colors duration-300 shadow-soft">
+                        Book Now
+                    </button>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button class="text-brand-navy hover:text-brand-sage p-2" onclick="toggleMobileMenu()">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4 space-y-2">
+                <a href="#" onclick="showPage('home')" class="block px-4 py-2 text-brand-navy hover:bg-brand-sage/10 rounded-lg transition-colors">Home</a>
+                <a href="#" onclick="showPage('services')" class="block px-4 py-2 text-brand-navy hover:bg-brand-sage/10 rounded-lg transition-colors">Services</a>
+                <a href="#" onclick="showPage('programs')" class="block px-4 py-2 text-brand-navy hover:bg-brand-sage/10 rounded-lg transition-colors">Programs</a>
+                <a href="#" onclick="showPage('pricing')" class="block px-4 py-2 text-brand-navy hover:bg-brand-sage/10 rounded-lg transition-colors">Pricing</a>
+                <a href="#" onclick="showPage('store')" class="block px-4 py-2 text-brand-navy hover:bg-brand-sage/10 rounded-lg transition-colors">Store</a>
+                <button onclick="showPage('book')" class="w-full text-left px-4 py-2 bg-brand-navy text-white rounded-lg font-medium">Book Now</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HOME PAGE -->
+    <div id="home" class="page-section active">
+        <!-- Hero Section -->
+        <section class="relative pt-12 pb-20 lg:pt-24 lg:pb-32 overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="space-y-8">
+                        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-sage/10 text-brand-navy font-medium text-sm">
+                            <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                            Supporting Families in Nigeria, USA & Diaspora
+                        </div>
+                        <h1 class="text-4xl lg:text-6xl font-bold leading-tight text-brand-navy">
+                            Autism Support for Families in <span class="text-brand-sage">Nigeria & the Diaspora</span>
+                        </h1>
+                        <p class="text-lg text-brand-navy/80 max-w-xl leading-relaxed">
+                            Professional guidance, education, and parent coaching designed to bring clarity, confidence, and progress to your family's autism journey.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showPage('book')" class="inline-flex justify-center items-center px-8 py-4 rounded-full bg-brand-navy text-white font-semibold hover:bg-brand-sage transition-colors duration-300 shadow-lg shadow-brand-navy/20">
+                                Book a Consultation
+                            </button>
+                            <button onclick="showPage('programs')" class="inline-flex justify-center items-center px-8 py-4 rounded-full bg-white text-brand-navy border border-brand-navy/10 font-semibold hover:bg-brand-sage/10 transition-colors duration-300">
+                                Join Parent Program
+                            </button>
+                        </div>
+                        <div class="pt-4">
+                            <button class="inline-flex items-center gap-3 px-6 py-3 bg-[#25D366] text-white rounded-full font-medium hover:bg-[#20BA5A] transition-colors shadow-soft">
+                                <i data-lucide="message-circle" class="w-5 h-5"></i>
+                                Join WhatsApp Support Group
+                            </button>
+                        </div>
+                    </div>
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-brand-sage/20 rounded-[3rem] blur-2xl transform rotate-3"></div>
+                        <img src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=1200&q=80" alt="Mother and child learning together" class="relative rounded-[2rem] shadow-card w-full object-cover h-[500px]">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Overview -->
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h2 class="text-3xl md:text-4xl font-bold text-brand-navy mb-4">Our Services</h2>
+                    <p class="text-lg text-brand-navy/70">Comprehensive support designed to meet your family where you are.</p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-brand-bg rounded-2xl p-6 hover:shadow-card transition-all duration-300 cursor-pointer" onclick="showPage('services')">
+                        <div class="w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center text-brand-gold mb-4">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-navy mb-2">Parent Coaching</h3>
+                        <p class="text-brand-navy/70 text-sm">One-on-one guidance for managing behaviors and fostering development.</p>
+                    </div>
+
+                    <div class="bg-brand-bg rounded-2xl p-6 hover:shadow-card transition-all duration-300 cursor-pointer" onclick="showPage('services')">
+                        <div class="w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center text-brand-gold mb-4">
+                            <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-navy mb-2">Autism Screening</h3>
+                        <p class="text-brand-navy/70 text-sm">Professional screening and functional profile assessments.</p>
+                    </div>
+
+                    <div class="bg-brand-bg rounded-2xl p-6 hover:shadow-card transition-all duration-300 cursor-pointer" onclick="showPage('services')">
+                        <div class="w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center text-brand-gold mb-4">
+                            <i data-lucide="message-circle" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-navy mb-2">WhatsApp Community</h3>
+                        <p class="text-brand-navy/70 text-sm">Daily support and guidance in our parent community.</p>
+                    </div>
+
+                    <div class="bg-brand-bg rounded-2xl p-6 hover:shadow-card transition-all duration-300 cursor-pointer" onclick="showPage('services')">
+                        <div class="w-12 h-12 bg-brand-navy rounded-xl flex items-center justify-center text-brand-gold mb-4">
+                            <i data-lucide="school" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-lg font-bold text-brand-navy mb-2">School Training</h3>
+                        <p class="text-brand-navy/70 text-sm">Professional development for teachers and school staff.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why SpedEveryday -->
+        <section class="py-20 bg-brand-navy text-white relative overflow-hidden">
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-brand-sage/10 rounded-l-full blur-3xl"></div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Why Choose SpedEveryday?</h2>
+                        <p class="text-brand-bg/80 text-lg mb-8 leading-relaxed">
+                            We combine clinical expertise with deep cultural understanding to provide autism support that truly resonates with Nigerian and diaspora families.
+                        </p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-sage/20 flex items-center justify-center text-brand-gold">
+                                    <i data-lucide="heart" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Family-Centered Care</h4>
+                                    <p class="text-brand-bg/70">Supporting the whole family unit with compassion and expertise.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-sage/20 flex items-center justify-center text-brand-gold">
+                                    <i data-lucide="globe" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Culturally Responsive</h4>
+                                    <p class="text-brand-bg/70">Understanding Nigerian family dynamics and diaspora experiences.</p>
+                                </div>
+                            </div>
+
+                            <div class="flex gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 rounded-full bg-brand-sage/20 flex items-center justify-center text-brand-gold">
+                                    <i data-lucide="shield-check" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Ethical & Professional</h4>
+                                    <p class="text-brand-bg/70">Evidence-based practices with the highest integrity standards.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative h-full min-h-[400px]">
+                        <img src="https://images.unsplash.com/photo-1551847677-dc82d764e1eb?auto=format&fit=crop&w=800&q=80" alt="Therapist with child" class="rounded-2xl shadow-2xl object-cover h-full w-full border-4 border-brand-sage/30">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Trust & Ethics Disclaimer -->
+        <section class="py-16 bg-brand-bg">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="bg-white rounded-2xl p-8 md:p-12 border border-brand-navy/10">
+                    <div class="flex items-start gap-4 mb-6">
+                        <div class="flex-shrink-0 w-12 h-12 bg-brand-sage/10 rounded-xl flex items-center justify-center text-brand-sage">
+                            <i data-lucide="shield-alert" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-bold text-brand-navy mb-3">Important Disclaimer</h3>
+                            <p class="text-brand-navy/70 leading-relaxed mb-4">
+                                SpedEveryday provides educational support, parent coaching, and functional guidance. We are not a medical or diagnostic service. Our services complement but do not replace professional medical evaluation, therapy, or clinical treatment.
+                            </p>
+                            <p class="text-brand-navy/70 leading-relaxed">
+                                All recommendations are educational in nature and should be discussed with your child's healthcare team. We maintain strict ethical standards and work collaboratively with families and professionals to support your child's development.
+                            </p>
+                            <button onclick="showPage('legal')" class="mt-6 text-brand-sage font-semibold hover:text-brand-navy transition-colors inline-flex items-center gap-2">
+                                Read Full Legal Disclaimer <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SERVICES PAGE -->
+    <div id="services" class="page-section">
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold text-brand-navy mb-4">Our Services</h1>
+                    <p class="text-lg text-brand-navy/70">Comprehensive autism support tailored to your family's unique needs.</p>
+                </div>
+
+                <div class="space-y-12">
+                    <!-- Service 1 -->
+                    <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-soft">
+                        <div class="grid md:grid-cols-3 gap-8 items-start">
+                            <div class="md:col-span-2">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-16 h-16 bg-brand-navy rounded-2xl flex items-center justify-center text-brand-gold">
+                                        <i data-lucide="users" class="w-8 h-8"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-2xl font-bold text-brand-navy">Parent Coaching & Education</h2>
+                                        <p class="text-brand-sage font-medium">One-on-One Support</p>
+                                    </div>
+                                </div>
+                                <p class="text-brand-navy/70 leading-relaxed mb-6">
+                                    Personalized coaching sessions designed to empower parents with practical strategies for managing behaviors, building routines, and fostering your child's development at home. We work with you to create sustainable, family-centered approaches that fit your unique situation.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Behavior management strategies</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Daily routine building and visual supports</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Communication development techniques</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Sensory regulation support</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <div class="bg-white p-6 rounded-2xl border border-brand-navy/10">
+                                    <p class="text-sm text-brand-navy/60 mb-2">Starting from</p>
+                                    <p class="text-3xl font-bold text-brand-navy mb-4">₦25,000<span class="text-lg font-normal text-brand-navy/60">/session</span></p>
+                                    <button onclick="showPage('pricing')" class="w-full bg-brand-navy text-white py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                                        View Pricing
+                                    </button>
+                                    <button onclick="showPage('book')" class="w-full mt-3 bg-white text-brand-navy border border-brand-navy/20 py-3 rounded-full font-semibold hover:bg-brand-sage/10 transition-colors">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 2 -->
+                    <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-soft">
+                        <div class="grid md:grid-cols-3 gap-8 items-start">
+                            <div class="md:col-span-2">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-16 h-16 bg-brand-navy rounded-2xl flex items-center justify-center text-brand-gold">
+                                        <i data-lucide="clipboard-check" class="w-8 h-8"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-2xl font-bold text-brand-navy">Autism Screening & Functional Profile</h2>
+                                        <p class="text-brand-sage font-medium">Professional Assessment</p>
+                                    </div>
+                                </div>
+                                <p class="text-brand-navy/70 leading-relaxed mb-6">
+                                    Comprehensive screening and functional assessment to understand your child's strengths, challenges, and developmental profile. Our assessments provide actionable insights and recommendations for home, school, and therapy settings.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Developmental screening and observation</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Functional behavior assessment</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Detailed written report with recommendations</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Follow-up consultation session</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <div class="bg-white p-6 rounded-2xl border border-brand-navy/10">
+                                    <p class="text-sm text-brand-navy/60 mb-2">Complete package</p>
+                                    <p class="text-3xl font-bold text-brand-navy mb-4">₦75,000</p>
+                                    <button onclick="showPage('pricing')" class="w-full bg-brand-navy text-white py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                                        View Pricing
+                                    </button>
+                                    <button onclick="showPage('book')" class="w-full mt-3 bg-white text-brand-navy border border-brand-navy/20 py-3 rounded-full font-semibold hover:bg-brand-sage/10 transition-colors">
+                                        Book Now
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 3 -->
+                    <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-soft">
+                        <div class="grid md:grid-cols-3 gap-8 items-start">
+                            <div class="md:col-span-2">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-16 h-16 bg-[#25D366] rounded-2xl flex items-center justify-center text-white">
+                                        <i data-lucide="message-circle" class="w-8 h-8"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-2xl font-bold text-brand-navy">WhatsApp Parent Support Community</h2>
+                                        <p class="text-brand-sage font-medium">Daily Guidance & Peer Support</p>
+                                    </div>
+                                </div>
+                                <p class="text-brand-navy/70 leading-relaxed mb-6">
+                                    Join our supportive community of parents navigating autism together. Receive daily tips, ask questions, share experiences, and get professional guidance in a safe, moderated environment designed for Nigerian and diaspora families.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Daily educational content and tips</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Weekly live Q&A sessions</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Peer support from other parents</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Resource library and downloadables</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <div class="bg-white p-6 rounded-2xl border border-brand-navy/10">
+                                    <p class="text-sm text-brand-navy/60 mb-2">Monthly membership</p>
+                                    <p class="text-3xl font-bold text-brand-navy mb-4">₦5,000<span class="text-lg font-normal text-brand-navy/60">/month</span></p>
+                                    <button onclick="showPage('pricing')" class="w-full bg-brand-navy text-white py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                                        View Pricing
+                                    </button>
+                                    <button class="w-full mt-3 bg-[#25D366] text-white py-3 rounded-full font-semibold hover:bg-[#20BA5A] transition-colors">
+                                        Join Community
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service 4 -->
+                    <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-soft">
+                        <div class="grid md:grid-cols-3 gap-8 items-start">
+                            <div class="md:col-span-2">
+                                <div class="flex items-center gap-4 mb-6">
+                                    <div class="w-16 h-16 bg-brand-navy rounded-2xl flex items-center justify-center text-brand-gold">
+                                        <i data-lucide="school" class="w-8 h-8"></i>
+                                    </div>
+                                    <div>
+                                        <h2 class="text-2xl font-bold text-brand-navy">School & Teacher Training</h2>
+                                        <p class="text-brand-sage font-medium">Professional Development</p>
+                                    </div>
+                                </div>
+                                <p class="text-brand-navy/70 leading-relaxed mb-6">
+                                    Comprehensive training programs for schools, teachers, and educational staff on autism awareness, inclusive classroom strategies, and evidence-based teaching methods. We help create supportive learning environments for all students.
+                                </p>
+                                <ul class="space-y-3 mb-6">
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Autism awareness and understanding</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Inclusive classroom strategies</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">Behavior management techniques</span>
+                                    </li>
+                                    <li class="flex items-start gap-3">
+                                        <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                        <span class="text-brand-navy/80">IEP development and implementation</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="flex flex-col gap-4">
+                                <div class="bg-white p-6 rounded-2xl border border-brand-navy/10">
+                                    <p class="text-sm text-brand-navy/60 mb-2">Custom pricing</p>
+                                    <p class="text-xl font-bold text-brand-navy mb-4">Contact for Quote</p>
+                                    <button onclick="showPage('book')" class="w-full bg-brand-navy text-white py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                                        Request Information
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PROGRAMS PAGE -->
+    <div id="programs" class="page-section">
+        <section class="py-20 bg-white">
+            <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Header -->
+                <div class="text-center mb-16">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-brand-sage/10 text-brand-navy font-medium text-sm mb-6">
+                        <span class="w-2 h-2 rounded-full bg-brand-gold"></span>
+                        6-Week Intensive Program
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-brand-navy mb-4">Autism Parent Program</h1>
+                    <p class="text-lg text-brand-navy/70 max-w-3xl mx-auto">
+                        A comprehensive 6-week journey designed to equip parents with the knowledge, strategies, and confidence to support their child's development effectively.
+                    </p>
+                </div>
+
+                <!-- Program Overview -->
+                <div class="bg-brand-bg rounded-3xl p-8 md:p-12 mb-12 shadow-soft">
+                    <h2 class="text-2xl font-bold text-brand-navy mb-6">What You'll Gain</h2>
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-brand-sage/20 rounded-xl flex items-center justify-center text-brand-sage">
+                                <i data-lucide="brain" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-navy mb-2">Deep Understanding</h3>
+                                <p class="text-brand-navy/70 text-sm">Learn how autism affects development, behavior, and communication.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-brand-sage/20 rounded-xl flex items-center justify-center text-brand-sage">
+                                <i data-lucide="target" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-navy mb-2">Practical Strategies</h3>
+                                <p class="text-brand-navy/70 text-sm">Implement evidence-based techniques immediately at home.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-brand-sage/20 rounded-xl flex items-center justify-center text-brand-sage">
+                                <i data-lucide="users" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-navy mb-2">Community Support</h3>
+                                <p class="text-brand-navy/70 text-sm">Connect with other parents on the same journey.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="flex-shrink-0 w-12 h-12 bg-brand-sage/20 rounded-xl flex items-center justify-center text-brand-sage">
+                                <i data-lucide="award" class="w-6 h-6"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-brand-navy mb-2">Certification</h3>
+                                <p class="text-brand-navy/70 text-sm">Receive a certificate of completion upon finishing the program.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Week-by-Week Breakdown -->
+                <div class="mb-12">
+                    <h2 class="text-2xl font-bold text-brand-navy mb-8 text-center">Week-by-Week Curriculum</h2>
+                    <div class="space-y-6">
+                        <!-- Week 1 -->
+                        <div class="bg-white rounded-2xl p-6 border border-brand-navy/10 hover:shadow-card transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-bold">
+                                    1
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-brand-navy mb-2">Understanding Autism Spectrum</h3>
+                                    <p class="text-brand-navy/70 mb-3">Core characteristics, sensory processing, and how autism presents differently in each child.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Foundations</span>
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Sensory Awareness</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Week 2 -->
+                        <div class="bg-white rounded-2xl p-6 border border-brand-navy/10 hover:shadow-card transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-bold">
+                                    2
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-brand-navy mb-2">Communication Development</h3>
+                                    <p class="text-brand-navy/70 mb-3">Supporting verbal and non-verbal communication, AAC tools, and language-building strategies.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Language</span>
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">AAC</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Week 3 -->
+                        <div class="bg-white rounded-2xl p-6 border border-brand-navy/10 hover:shadow-card transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-bold">
+                                    3
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-brand-navy mb-2">Behavior Management</h3>
+                                    <p class="text-brand-navy/70 mb-3">Understanding behavior functions, positive reinforcement, and managing challenging behaviors effectively.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Behavior</span>
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Reinforcement</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Week 4 -->
+                        <div class="bg-white rounded-2xl p-6 border border-brand-navy/10 hover:shadow-card transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-bold">
+                                    4
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-brand-navy mb-2">Daily Living & Routines</h3>
+                                    <p class="text-brand-navy/70 mb-3">Building structure, visual schedules, self-care skills, and managing transitions.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Routines</span>
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Independence</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Week 5 -->
+                        <div class="bg-white rounded-2xl p-6 border border-brand-navy/10 hover:shadow-card transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-bold">
+                                    5
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-brand-navy mb-2">Social Skills & Play</h3>
+                                    <p class="text-brand-navy/70 mb-3">Developing social understanding, peer interactions, and play skills appropriate to your child's level.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Social Skills</span>
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Play</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Week 6 -->
+                        <div class="bg-white rounded-2xl p-6 border border-brand-navy/10 hover:shadow-card transition-all">
+                            <div class="flex items-start gap-4">
+                                <div class="flex-shrink-0 w-12 h-12 bg-brand-navy text-white rounded-xl flex items-center justify-center font-bold">
+                                    6
+                                </div>
+                                <div class="flex-1">
+                                    <h3 class="text-xl font-bold text-brand-navy mb-2">School Advocacy & Long-Term Planning</h3>
+                                    <p class="text-brand-navy/70 mb-3">Navigating the education system, IEPs, advocacy strategies, and planning for your child's future.</p>
+                                    <div class="flex flex-wrap gap-2">
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Advocacy</span>
+                                        <span class="px-3 py-1 bg-brand-sage/10 text-brand-sage text-xs font-medium rounded-full">Planning</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Bonuses -->
+                <div class="bg-brand-sage/10 rounded-3xl p-8 md:p-12 mb-12">
+                    <h2 class="text-2xl font-bold text-brand-navy mb-6 text-center">Program Bonuses</h2>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="bg-white rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center text-brand-gold mx-auto mb-4">
+                                <i data-lucide="book-open" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-bold text-brand-navy mb-2">Resource Library</h3>
+                            <p class="text-brand-navy/70 text-sm">Lifetime access to downloadable guides, templates, and visual supports.</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center text-brand-gold mx-auto mb-4">
+                                <i data-lucide="video" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-bold text-brand-navy mb-2">Recorded Sessions</h3>
+                            <p class="text-brand-navy/70 text-sm">Access all live sessions on-demand to review at your own pace.</p>
+                        </div>
+                        <div class="bg-white rounded-2xl p-6 text-center">
+                            <div class="w-16 h-16 bg-brand-gold/20 rounded-full flex items-center justify-center text-brand-gold mx-auto mb-4">
+                                <i data-lucide="award" class="w-8 h-8"></i>
+                            </div>
+                            <h3 class="font-bold text-brand-navy mb-2">Certificate</h3>
+                            <p class="text-brand-navy/70 text-sm">Official certificate of completion to showcase your commitment.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pricing -->
+                <div class="grid md:grid-cols-2 gap-8 mb-12">
+                    <!-- Early Bird -->
+                    <div class="bg-white rounded-3xl p-8 border-2 border-brand-gold shadow-card">
+                        <div class="text-center mb-6">
+                            <div class="inline-block px-4 py-1 bg-brand-gold/20 text-brand-gold text-sm font-bold rounded-full mb-4">
+                                EARLY BIRD SPECIAL
+                            </div>
+                            <h3 class="text-2xl font-bold text-brand-navy mb-2">Limited Time Offer</h3>
+                            <div class="flex items-baseline justify-center gap-2 mb-2">
+                                <span class="text-4xl font-bold text-brand-navy">₦45,000</span>
+                            </div>
+                            <p class="text-brand-navy/60 line-through">Regular: ₦60,000</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">6 weeks of live training sessions</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">All bonuses included</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">WhatsApp community access</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Certificate of completion</span>
+                            </li>
+                        </ul>
+                        <button onclick="showPage('book')" class="w-full bg-brand-gold text-white py-4 rounded-full font-bold hover:bg-brand-gold/90 transition-colors shadow-lg">
+                            Enroll Now - Save ₦15,000
+                        </button>
+                    </div>
+
+                    <!-- Regular -->
+                    <div class="bg-white rounded-3xl p-8 border border-brand-navy/10 shadow-soft">
+                        <div class="text-center mb-6">
+                            <h3 class="text-2xl font-bold text-brand-navy mb-2">Regular Pricing</h3>
+                            <div class="flex items-baseline justify-center gap-2 mb-2">
+                                <span class="text-4xl font-bold text-brand-navy">₦60,000</span>
+                            </div>
+                            <p class="text-brand-navy/60">Full program access</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">6 weeks of live training sessions</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">All bonuses included</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">WhatsApp community access</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Certificate of completion</span>
+                            </li>
+                        </ul>
+                        <button onclick="showPage('book')" class="w-full bg-brand-navy text-white py-4 rounded-full font-bold hover:bg-brand-sage transition-colors">
+                            Enroll Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- PRICING PAGE -->
+    <div id="pricing" class="page-section">
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h1 class="text-4xl md:text-5xl font-bold text-brand-navy mb-4">Transparent Pricing</h1>
+                    <p class="text-lg text-brand-navy/70 max-w-3xl mx-auto">
+                        Clear, straightforward pricing for all our services. No hidden fees, no surprises.
+                    </p>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Parent Coaching -->
+                    <div class="bg-brand-bg rounded-3xl p-8 shadow-soft hover:shadow-card transition-all">
+                        <div class="w-14 h-14 bg-brand-navy rounded-2xl flex items-center justify-center text-brand-gold mb-6">
+                            <i data-lucide="users" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-navy mb-2">Parent Coaching</h3>
+                        <p class="text-brand-navy/60 text-sm mb-6">One-on-one personalized support</p>
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-brand-navy">₦25,000</span>
+                                <span class="text-brand-navy/60">/session</span>
+                            </div>
+                            <p class="text-sm text-brand-navy/60">60-minute sessions</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Personalized strategies</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Action plans</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Follow-up support</span>
+                            </li>
+                        </ul>
+                        <button onclick="showPage('book')" class="w-full bg-brand-navy text-white py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                            Book Session
+                        </button>
+                    </div>
+
+                    <!-- Screening -->
+                    <div class="bg-brand-bg rounded-3xl p-8 shadow-soft hover:shadow-card transition-all">
+                        <div class="w-14 h-14 bg-brand-navy rounded-2xl flex items-center justify-center text-brand-gold mb-6">
+                            <i data-lucide="clipboard-check" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-navy mb-2">Autism Screening</h3>
+                        <p class="text-brand-navy/60 text-sm mb-6">Complete assessment package</p>
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-brand-navy">₦75,000</span>
+                            </div>
+                            <p class="text-sm text-brand-navy/60">One-time fee</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Full screening</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Written report</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Consultation session</span>
+                            </li>
+                        </ul>
+                        <button onclick="showPage('book')" class="w-full bg-brand-navy text-white py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                            Book Assessment
+                        </button>
+                    </div>
+
+                    <!-- 6-Week Program -->
+                    <div class="bg-brand-gold/10 rounded-3xl p-8 shadow-card border-2 border-brand-gold relative">
+                        <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 px-4 py-1 bg-brand-gold text-white text-xs font-bold rounded-full">
+                            MOST POPULAR
+                        </div>
+                        <div class="w-14 h-14 bg-brand-gold rounded-2xl flex items-center justify-center text-white mb-6">
+                            <i data-lucide="graduation-cap" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-navy mb-2">6-Week Program</h3>
+                        <p class="text-brand-navy/60 text-sm mb-6">Complete parent training</p>
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-brand-navy">₦45,000</span>
+                            </div>
+                            <p class="text-sm text-brand-navy/60">Early bird pricing</p>
+                            <p class="text-xs text-brand-navy/50 line-through">Regular: ₦60,000</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">6 weeks training</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">All bonuses</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-gold flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Certificate</span>
+                            </li>
+                        </ul>
+                        <button onclick="showPage('programs')" class="w-full bg-brand-gold text-white py-3 rounded-full font-semibold hover:bg-brand-gold/90 transition-colors">
+                            View Program
+                        </button>
+                    </div>
+
+                    <!-- WhatsApp Community -->
+                    <div class="bg-brand-bg rounded-3xl p-8 shadow-soft hover:shadow-card transition-all">
+                        <div class="w-14 h-14 bg-[#25D366] rounded-2xl flex items-center justify-center text-white mb-6">
+                            <i data-lucide="message-circle" class="w-7 h-7"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-brand-navy mb-2">WhatsApp Group</h3>
+                        <p class="text-brand-navy/60 text-sm mb-6">Daily support community</p>
+                        <div class="mb-6">
+                            <div class="flex items-baseline gap-2 mb-2">
+                                <span class="text-3xl font-bold text-brand-navy">₦5,000</span>
+                                <span class="text-brand-navy/60">/month</span>
+                            </div>
+                            <p class="text-sm text-brand-navy/60">Cancel anytime</p>
+                        </div>
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Daily tips</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Weekly Q&A</span>
+                            </li>
+                            <li class="flex items-start gap-2 text-sm">
+                                <i data-lucide="check" class="w-4 h-4 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span class="text-brand-navy/80">Peer support</span>
+                            </li>
+                        </ul>
+                        <button class="w-full bg-[#25D366] text-white py-3 rounded-full font-semibold hover:bg-[#20BA5A] transition-colors">
+                            Join Community
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Payment Methods -->
+                <div class="mt-16 bg-brand-bg rounded-3xl p-8 md:p-12">
+                    <h2 class="text-2xl font-bold text-brand-navy mb-8 text-center">Payment Methods</h2>
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                                <i data-lucide="credit-card" class="w-8 h-8 text-brand-navy"></i>
+                            </div>
+                            <h3 class="font-bold text-brand-navy mb-2">Bank Transfer</h3>
+                            <p class="text-brand-navy/70 text-sm">Direct bank transfer to our Nigerian account</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                                <i data-lucide="smartphone" class="w-8 h-8 text-brand-navy"></i>
+                            </div>
+                            <h3 class="font-bold text-brand-navy mb-2">Mobile Money</h3>
+                            <p class="text-brand-navy/70 text-sm">Pay via mobile money platforms</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-soft">
+                                <i data-lucide="globe" class="w-8 h-8 text-brand-navy"></i>
+                            </div>
+                            <h3 class="font-bold text-brand-navy mb-2">International</h3>
+                            <p class="text-brand-navy/70 text-sm">PayPal and international cards accepted</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- BOOK SERVICES PAGE -->
+    <div id="book" class="page-section">
+        <section class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-brand-navy mb-4">Book Your Service</h1>
+                    <p class="text-lg text-brand-navy/70">Complete the form below to get started with SpedEveryday.</p>
+                </div>
+
+                <!-- Booking Form -->
+                <div class="bg-brand-bg rounded-3xl p-8 md:p-12 shadow-card">
+                    <form class="space-y-6">
+                        <!-- Personal Information -->
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-navy mb-6">Personal Information</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Full Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="John Doe">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Email Address *</label>
+                                    <input type="email" required class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="john@example.com">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Phone Number *</label>
+                                    <input type="tel" required class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="+234 800 000 0000">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Location *</label>
+                                    <select required class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors">
+                                        <option value="">Select location</option>
+                                        <option value="nigeria">Nigeria</option>
+                                        <option value="usa">United States</option>
+                                        <option value="uk">United Kingdom</option>
+                                        <option value="other">Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Child Information -->
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-navy mb-6">Child Information</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Child's Name *</label>
+                                    <input type="text" required class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="Child's name">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Age *</label>
+                                    <input type="number" required class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="5">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-brand-navy mb-2">Current Challenges (Optional)</label>
+                                    <textarea rows="4" class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="Briefly describe the main challenges you're facing..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Service Selection -->
+                        <div>
+                            <h3 class="text-xl font-bold text-brand-navy mb-6">Select Service *</h3>
+                            <div class="space-y-4">
+                                <label class="flex items-start gap-4 p-4 bg-white rounded-xl border-2 border-brand-navy/10 cursor-pointer hover:border-brand-sage transition-colors">
+                                    <input type="radio" name="service" value="coaching" class="mt-1 w-5 h-5 text-brand-navy focus:ring-brand-sage">
+                                    <div class="flex-1">
+                                        <div class="font-bold text-brand-navy">Parent Coaching</div>
+                                        <div class="text-sm text-brand-navy/70">₦25,000 per session</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-4 p-4 bg-white rounded-xl border-2 border-brand-navy/10 cursor-pointer hover:border-brand-sage transition-colors">
+                                    <input type="radio" name="service" value="screening" class="mt-1 w-5 h-5 text-brand-navy focus:ring-brand-sage">
+                                    <div class="flex-1">
+                                        <div class="font-bold text-brand-navy">Autism Screening & Functional Profile</div>
+                                        <div class="text-sm text-brand-navy/70">₦75,000 one-time</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-4 p-4 bg-white rounded-xl border-2 border-brand-navy/10 cursor-pointer hover:border-brand-sage transition-colors">
+                                    <input type="radio" name="service" value="program" class="mt-1 w-5 h-5 text-brand-navy focus:ring-brand-sage">
+                                    <div class="flex-1">
+                                        <div class="font-bold text-brand-navy">6-Week Autism Parent Program</div>
+                                        <div class="text-sm text-brand-navy/70">₦45,000 (Early Bird) / ₦60,000 (Regular)</div>
+                                    </div>
+                                </label>
+                                <label class="flex items-start gap-4 p-4 bg-white rounded-xl border-2 border-brand-navy/10 cursor-pointer hover:border-brand-sage transition-colors">
+                                    <input type="radio" name="service" value="whatsapp" class="mt-1 w-5 h-5 text-brand-navy focus:ring-brand-sage">
+                                    <div class="flex-1">
+                                        <div class="font-bold text-brand-navy">WhatsApp Parent Support Community</div>
+                                        <div class="text-sm text-brand-navy/70">₦5,000 per month</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div>
+                            <label class="block text-sm font-medium text-brand-navy mb-2">Additional Notes (Optional)</label>
+                            <textarea rows="3" class="w-full px-4 py-3 rounded-xl border border-brand-navy/20 focus:border-brand-sage focus:ring-2 focus:ring-brand-sage/20 outline-none transition-colors" placeholder="Any specific questions or concerns you'd like to share..."></textarea>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="pt-6">
+                            <button type="submit" class="w-full bg-brand-navy text-white py-4 rounded-full font-bold text-lg hover:bg-brand-sage transition-colors shadow-lg">
+                                Proceed to Payment
+                            </button>
+                            <p class="text-center text-sm text-brand-navy/60 mt-4">
+                                By submitting, you agree to our <a href="#" onclick="showPage('legal')" class="text-brand-sage hover:underline">terms and conditions</a>
+                            </p>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Confirmation Message (Hidden by default) -->
+                <div id="confirmationMessage" class="hidden bg-brand-sage/10 rounded-3xl p-8 md:p-12 text-center mt-8">
+                    <div class="w-20 h-20 bg-brand-sage rounded-full flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="check" class="w-10 h-10 text-white"></i>
+                    </div>
+                    <h2 class="text-3xl font-bold text-brand-navy mb-4">Booking Confirmed!</h2>
+                    <p class="text-lg text-brand-navy/70 mb-6">
+                        Thank you for choosing SpedEveryday. We've received your booking request and will contact you within 24 hours to confirm your appointment and provide payment details.
+                    </p>
+                    <button onclick="showPage('home')" class="bg-brand-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                        Return to Home
+                    </button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- STORE PAGE -->
+    <div id="store" class="page-section">
+        <section class="py-20 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl md:text-5xl font-bold text-brand-navy mb-4">Support Products for Children</h1>
+                    <p class="text-lg text-brand-navy/70 max-w-3xl mx-auto">
+                        Carefully curated learning materials, sensory tools, and developmental products to support your child's growth and development.
+                    </p>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8">
+                    <!-- Filters Sidebar -->
+                    <aside class="w-full lg:w-64 flex-shrink-0">
+                        <div class="bg-brand-bg p-6 rounded-2xl shadow-soft sticky top-24">
+                            <h3 class="font-bold text-brand-navy mb-6 flex items-center gap-2">
+                                <i data-lucide="sliders-horizontal" class="w-5 h-5 text-brand-gold"></i>
+                                Filters
+                            </h3>
+
+                            <div class="mb-6">
+                                <h4 class="font-semibold text-brand-navy mb-3 text-sm">Category</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">Sensory Tools</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">Learning Aids</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">Fine Motor</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">Communication</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">Daily Living</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div class="mb-6">
+                                <h4 class="font-semibold text-brand-navy mb-3 text-sm">Age Group</h4>
+                                <div class="space-y-2">
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">2-4 Years</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">5-8 Years</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">9-12 Years</span>
+                                    </label>
+                                    <label class="flex items-center gap-2 cursor-pointer group">
+                                        <input type="checkbox" class="w-4 h-4 rounded border-gray-300 text-brand-navy focus:ring-brand-sage">
+                                        <span class="text-sm text-brand-navy/80 group-hover:text-brand-navy">13+ Years</span>
+                                    </label>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="font-semibold text-brand-navy mb-3 text-sm">Price Range</h4>
+                                <input type="range" min="0" max="100" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-brand-navy mb-2">
+                                <div class="flex justify-between text-xs text-brand-navy/70">
+                                    <span>₦0</span>
+                                    <span>₦50,000+</span>
+                                </div>
+                            </div>
+                        </div>
+                    </aside>
+
+                    <!-- Product Grid -->
+                    <div class="flex-1">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                            <!-- Product 1 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1587654780291-39c9404d746b?auto=format&fit=crop&w=600&q=80" alt="Sensory Blocks" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Sensory Tools</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Tactile Sensory Blocks</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Set of 12 textured blocks for tactile processing.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦12,500</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 2 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1596464716127-f9a82741cac8?auto=format&fit=crop&w=600&q=80" alt="Visual Timer" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Daily Living</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Visual Countdown Timer</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Helps children understand time and transitions.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦9,250</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 3 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=600&q=80" alt="Emotion Cards" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Communication</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Emotion Flashcards</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">High-contrast cards for identifying feelings.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦7,500</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 4 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1599623560574-39d485900c95?auto=format&fit=crop&w=600&q=80" alt="Weighted Blanket" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Calming</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Kids Weighted Lap Pad</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Gentle deep pressure for focus and calm.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦16,000</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 5 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1566576912902-48f5306a98f9?auto=format&fit=crop&w=600&q=80" alt="Sorting Toy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Fine Motor</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Color Sorting Bowls</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Wooden sorting bowls with matching acorns.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦14,500</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 6 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1618842676088-c4d48a6a7c9d?auto=format&fit=crop&w=600&q=80" alt="Chew Jewelry" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Oral Motor</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Sensory Chew Necklace</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Safe silicone pendant for oral sensory input.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦6,250</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 7 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=80" alt="Puzzle" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Learning Aids</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">Wooden Shape Puzzle</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Develops problem-solving and fine motor skills.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦8,750</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Product 8 -->
+                            <div class="bg-white rounded-2xl overflow-hidden shadow-soft hover:shadow-card transition-all group">
+                                <div class="relative h-56 overflow-hidden bg-gray-100">
+                                    <img src="https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?auto=format&fit=crop&w=600&q=80" alt="Communication Board" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                    <button class="absolute top-3 right-3 w-9 h-9 bg-white/90 backdrop-blur rounded-full flex items-center justify-center text-brand-navy hover:text-red-500 transition-colors">
+                                        <i data-lucide="heart" class="w-4 h-4"></i>
+                                    </button>
+                                </div>
+                                <div class="p-5">
+                                    <div class="text-xs font-semibold text-brand-sage mb-1 uppercase tracking-wider">Communication</div>
+                                    <h3 class="text-base font-bold text-brand-navy mb-2">PECS Communication Board</h3>
+                                    <p class="text-brand-navy/60 text-xs mb-3 line-clamp-2">Picture exchange system for non-verbal children.</p>
+                                    <div class="flex items-center justify-between pt-3 border-t border-gray-100">
+                                        <span class="text-lg font-bold text-brand-navy">₦18,000</span>
+                                        <button class="bg-brand-navy text-white p-2 rounded-lg hover:bg-brand-sage transition-colors">
+                                            <i data-lucide="shopping-cart" class="w-4 h-4"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Cart Preview -->
+                        <div class="mt-12 bg-brand-sage/10 rounded-2xl p-6 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 bg-brand-sage rounded-full flex items-center justify-center text-white">
+                                    <i data-lucide="shopping-bag" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-brand-navy">Your Cart</p>
+                                    <p class="text-sm text-brand-navy/70">0 items</p>
+                                </div>
+                            </div>
+                            <button class="bg-brand-navy text-white px-8 py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                                View Cart & Checkout
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- LEGAL/DISCLAIMER PAGE -->
+    <div id="legal" class="page-section">
+        <section class="py-20 bg-white">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <div class="w-16 h-16 bg-brand-sage/10 rounded-2xl flex items-center justify-center mx-auto mb-6">
+                        <i data-lucide="shield-check" class="w-8 h-8 text-brand-sage"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-brand-navy mb-4">Legal Disclaimer & Ethics</h1>
+                    <p class="text-lg text-brand-navy/70">Our commitment to transparency, ethics, and professional standards.</p>
+                </div>
+
+                <div class="space-y-8">
+                    <!-- Section 1 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Nature of Services</h2>
+                        <p class="text-brand-navy/70 leading-relaxed mb-4">
+                            SpedEveryday provides educational support, parent coaching, and functional guidance services. We are not a medical, diagnostic, or clinical treatment facility. Our services are designed to complement, not replace, professional medical evaluation, therapy, or clinical treatment.
+                        </p>
+                        <p class="text-brand-navy/70 leading-relaxed">
+                            All assessments, screenings, and functional profiles provided by SpedEveryday are educational in nature and should not be considered medical diagnoses. For formal autism diagnosis and medical treatment, please consult with licensed healthcare professionals, including pediatricians, psychologists, or psychiatrists.
+                        </p>
+                    </div>
+
+                    <!-- Section 2 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Professional Boundaries</h2>
+                        <p class="text-brand-navy/70 leading-relaxed mb-4">
+                            Our team consists of trained educators, parent coaches, and autism support specialists. We work within our scope of practice and maintain clear professional boundaries. We do not provide:
+                        </p>
+                        <ul class="space-y-2 text-brand-navy/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x-circle" class="w-5 h-5 text-brand-navy flex-shrink-0 mt-0.5"></i>
+                                <span>Medical diagnoses or clinical assessments</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x-circle" class="w-5 h-5 text-brand-navy flex-shrink-0 mt-0.5"></i>
+                                <span>Prescription of medications or medical treatments</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x-circle" class="w-5 h-5 text-brand-navy flex-shrink-0 mt-0.5"></i>
+                                <span>Psychotherapy or mental health counseling</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="x-circle" class="w-5 h-5 text-brand-navy flex-shrink-0 mt-0.5"></i>
+                                <span>Emergency medical or crisis intervention services</span>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 3 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Collaborative Approach</h2>
+                        <p class="text-brand-navy/70 leading-relaxed mb-4">
+                            We believe in a collaborative, team-based approach to supporting children with autism. We encourage families to work with a multidisciplinary team that may include:
+                        </p>
+                        <ul class="space-y-2 text-brand-navy/70">
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span>Pediatricians and medical doctors</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span>Licensed therapists (speech, occupational, physical)</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span>Psychologists and behavioral specialists</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <i data-lucide="check-circle" class="w-5 h-5 text-brand-sage flex-shrink-0 mt-0.5"></i>
+                                <span>Special education teachers and school staff</span>
+                            </li>
+                        </ul>
+                        <p class="text-brand-navy/70 leading-relaxed mt-4">
+                            We are happy to coordinate with your child's healthcare team and share educational recommendations when appropriate and with your consent.
+                        </p>
+                    </div>
+
+                    <!-- Section 4 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Evidence-Based Practices</h2>
+                        <p class="text-brand-navy/70 leading-relaxed">
+                            All strategies, techniques, and recommendations provided by SpedEveryday are based on current research and evidence-based practices in autism education and support. We continuously update our knowledge and methods to reflect the latest developments in the field. However, individual results may vary, and we cannot guarantee specific outcomes.
+                        </p>
+                    </div>
+
+                    <!-- Section 5 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Confidentiality & Privacy</h2>
+                        <p class="text-brand-navy/70 leading-relaxed mb-4">
+                            We take your family's privacy seriously. All information shared with SpedEveryday is kept confidential and used solely for the purpose of providing services to your family. We do not share your information with third parties without your explicit consent, except as required by law.
+                        </p>
+                        <p class="text-brand-navy/70 leading-relaxed">
+                            Our WhatsApp support community is a private, moderated space. We expect all members to respect confidentiality and maintain a supportive, respectful environment.
+                        </p>
+                    </div>
+
+                    <!-- Section 6 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Refund & Cancellation Policy</h2>
+                        <p class="text-brand-navy/70 leading-relaxed mb-4">
+                            We want you to be satisfied with our services. Our refund and cancellation policies are as follows:
+                        </p>
+                        <ul class="space-y-3 text-brand-navy/70">
+                            <li><strong class="text-brand-navy">Individual Sessions:</strong> Cancellations must be made at least 24 hours in advance for a full refund or rescheduling.</li>
+                            <li><strong class="text-brand-navy">6-Week Program:</strong> Refunds available within the first week if you are not satisfied. After week one, no refunds, but you may transfer your enrollment to a future cohort.</li>
+                            <li><strong class="text-brand-navy">WhatsApp Community:</strong> Monthly subscription can be cancelled anytime. No refunds for partial months.</li>
+                            <li><strong class="text-brand-navy">Store Products:</strong> Returns accepted within 14 days of delivery for unused items in original packaging.</li>
+                        </ul>
+                    </div>
+
+                    <!-- Section 7 -->
+                    <div class="bg-brand-bg rounded-2xl p-8">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Limitation of Liability</h2>
+                        <p class="text-brand-navy/70 leading-relaxed">
+                            While we strive to provide the highest quality services, SpedEveryday and its staff are not liable for any outcomes resulting from the implementation of strategies or recommendations provided. Parents and caregivers are responsible for making informed decisions about their child's care and should consult with appropriate healthcare professionals before making significant changes to their child's treatment or education plan.
+                        </p>
+                    </div>
+
+                    <!-- Section 8 -->
+                    <div class="bg-brand-sage/10 rounded-2xl p-8 border-2 border-brand-sage/30">
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4">Contact Us</h2>
+                        <p class="text-brand-navy/70 leading-relaxed mb-6">
+                            If you have questions about our services, policies, or this disclaimer, please don't hesitate to reach out. We're here to help and provide clarity.
+                        </p>
+                        <div class="flex flex-col sm:flex-row gap-4">
+                            <button onclick="showPage('book')" class="bg-brand-navy text-white px-6 py-3 rounded-full font-semibold hover:bg-brand-sage transition-colors">
+                                Contact Support
+                            </button>
+                            <button onclick="showPage('home')" class="bg-white text-brand-navy border border-brand-navy/20 px-6 py-3 rounded-full font-semibold hover:bg-brand-sage/10 transition-colors">
+                                Return to Home
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-brand-navy text-white pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-6 cursor-pointer" onclick="showPage('home')">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center text-brand-navy">
+                            <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                        </div>
+                        <span class="font-heading font-bold text-xl tracking-tight">SpedEveryday</span>
+                    </div>
+                    <p class="text-brand-bg/60 text-sm leading-relaxed mb-6">
+                        Empowering families with autism through education, coaching, and functional support across Nigeria and the Diaspora.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-brand-bg/60 hover:text-brand-gold transition-colors"><i data-lucide="facebook" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-brand-bg/60 hover:text-brand-gold transition-colors"><i data-lucide="instagram" class="w-5 h-5"></i></a>
+                        <a href="#" class="text-brand-bg/60 hover:text-brand-gold transition-colors"><i data-lucide="twitter" class="w-5 h-5"></i></a>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-brand-gold">Services</h4>
+                    <ul class="space-y-3 text-brand-bg/60 text-sm">
+                        <li><a href="#" onclick="showPage('services')" class="hover:text-white transition-colors">Parent Coaching</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="hover:text-white transition-colors">Autism Screening</a></li>
+                        <li><a href="#" onclick="showPage('programs')" class="hover:text-white transition-colors">6-Week Program</a></li>
+                        <li><a href="#" onclick="showPage('services')" class="hover:text-white transition-colors">WhatsApp Community</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-brand-gold">Quick Links</h4>
+                    <ul class="space-y-3 text-brand-bg/60 text-sm">
+                        <li><a href="#" onclick="showPage('pricing')" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="#" onclick="showPage('store')" class="hover:text-white transition-colors">Store</a></li>
+                        <li><a href="#" onclick="showPage('book')" class="hover:text-white transition-colors">Book Services</a></li>
+                        <li><a href="#" onclick="showPage('legal')" class="hover:text-white transition-colors">Legal Disclaimer</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-lg mb-6 text-brand-gold">Contact</h4>
+                    <ul class="space-y-3 text-brand-bg/60 text-sm">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="map-pin" class="w-4 h-4 mt-1 flex-shrink-0"></i>
+                            <span>Lagos, Nigeria &<br>Houston, TX, USA</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="mail" class="w-4 h-4 flex-shrink-0"></i>
+                            <span>hello@spedeveryday.com</span>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <i data-lucide="phone" class="w-4 h-4 flex-shrink-0"></i>
+                            <span>+234 800 123 4567</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-brand-bg/40 text-xs">© 2024 SpedEveryday. All rights reserved.</p>
+                <div class="flex gap-6 text-xs text-brand-bg/40">
+                    <a href="#" onclick="showPage('legal')" class="hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#" onclick="showPage('legal')" class="hover:text-white transition-colors">Terms of Service</a>
+                    <a href="#" onclick="showPage('legal')" class="hover:text-white transition-colors">Disclaimer</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Page navigation
+        function showPage(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.remove('active');
+            });
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            
+            // Close mobile menu if open
+            document.getElementById('mobileMenu').classList.add('hidden');
+            
+            // Reinitialize icons for new content
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+
+        // Mobile menu toggle
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Form submission (demo)
+        document.addEventListener('DOMContentLoaded', function() {
+            const bookingForm = document.querySelector('#book form');
+            if (bookingForm) {
+                bookingForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    // Hide form
+                    bookingForm.parentElement.style.display = 'none';
+                    // Show confirmation
+                    document.getElementById('confirmationMessage').classList.remove('hidden');
+                    // Reinitialize icons
+                    lucide.createIcons();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -10,7 +10,7 @@ const HeroSection = () => {
     {/* top text */}
     <div className='flex items-center justify-center font-sans text-[15px] bg-[#eaf1ee] border-brand-sage rounded-full h-[36px] w-full max-w-[320px]' data-aos="fade-down" data-aos-delay="200">
         <div className='w-[8px] h-[8px] rounded-full bg-brand-gold flex mr-1 ml-[-20px] font-sans'></div>
-        <p className='text-[12px] lg:text-[14px]'>Supporting Families Worldwide</p>
+        <p className='text-[12px] lg:text-[14px]'>Supporting Families everywhere</p>
     </div>
      
      {/* Main text */}
