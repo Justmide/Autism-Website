@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Menu, X, ShoppingBag, PhoneCallIcon, MessageCircleCode } from 'lucide-react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import logo from "../assets/logo-Photoroom.png";
+// import logo from "../assets/logo-Photoroom.png";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,7 +37,7 @@ const Navbar = () => {
             className="flex items-center cursor-pointer"
             onClick={() => handleNavClick('/')}
           >
-            <img src={logo} alt="logo" className="w-[90px]" />
+            <img src='https://ucarecdn.com/6d8418de-73c8-4653-a42c-fe4faad98376/logoPhotoroom.png' alt="logo" className="w-[90px]" />
           </motion.div>
 
           {/* Desktop Menu */}

@@ -1,7 +1,7 @@
 import { GlobeIcon, HeartHandshake, ShieldCheck } from 'lucide-react'
 import React from 'react'
 import { PiCertificateThin } from 'react-icons/pi'
-import SpedEveryday from "../../assets/SpedEveryday.jpg"
+// import SpedEveryday from "../../assets/SpedEveryday.jpg"
 
 const AboutUs = () => {
   return (
@@ -55,7 +55,7 @@ const AboutUs = () => {
     {/* right side */}
      <div className='lg:w-1/2 w-full flex justify-center items-center' data-aos="fade-down">
      <img 
-     src={SpedEveryday} 
+     src='https://ucarecdn.com/dda024cc-b9fd-4de7-9ad8-61b13815d01f/SpedEveryday.jpg' 
      alt="why choose us"
      className='rounded-tl-3xl rounded-br-3xl rounded-lg lg:h-[400px] h-[300px] w-full border-[5px] border-brand-navy mt-5' 
      />

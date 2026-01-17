@@ -362,7 +362,7 @@ const Programs = () => {
             <p className="lg:text-lg text-[14px] mb-6">
               We're confident you'll find immense value in our pilot program. If you're not satisfied after the first two sessions, we'll refund your investment, no questions asked.
             </p>
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-8">. 
               <div className="text-center">
                 <div className="text-3xl font-bold mb-1">14</div>
                 <div className="text-sm text-white/80">Day Guarantee</div>

@@ -1,6 +1,6 @@
 import { MessageCircle, PhoneCallIcon } from 'lucide-react'
 import React from 'react'
-import CoverImg from '../../assets/coverImg.jpg'
+// import CoverImg from '../../assets/coverImg.jpg'
 const HeroSection = () => {
   return (
    <>
@@ -42,7 +42,7 @@ const HeroSection = () => {
     {/* right side  */}
     <div className='flex items-center justify-center w-full lg:w-1/2 mt-8 lg:mt-0' data-aos="fade-left" data-aos-duration="1000">
     <img 
-    src={CoverImg}
+    src='https://ucarecdn.com/3d42c300-b386-4f69-87f4-9ce2e3c9730b/coverImg.jpg'
     alt="" 
     className='w-full lg:h-[570px] h-[400px] rounded-[2rem] shadow-card object-cover max-h-[500px] drop-shadow-[10px_15px_10px_rgba(141,155,158,0.5)]'
     />
