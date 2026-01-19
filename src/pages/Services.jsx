@@ -26,15 +26,15 @@ const Service = () => {
         {
           type: '1:1 Autism Parent Coaching',
           subtitle: 'Virtual – Zoom Sessions',
-          description: 'Individualized guidance for home and school',
-          for: 'Parents who want individualized guidance for home and school',
-          includes: [
-            'Understanding the child\'s autism profile',
-            'Behavior support strategies',
-            'Communication & social skills support',
-            'School advocacy guidance',
-            'Home routine & structure support'
-          ],
+          description: 'Individualized support for homes, school and all environments',
+          // for: 'Parents who want individualized guidance for home and school',
+          // includes: [
+          //   'Understanding the child\'s autism profile',
+          //   'Behavior support strategies',
+          //   'Communication & social skills support',
+          //   'School advocacy guidance',
+          //   'Home routine & structure support'
+          // ],
           pricing: [
             { label: 'Single session (60 mins)', price: '$85' },
             { label: '4-session package', price: '$300', popular: true },
@@ -58,7 +58,7 @@ const Service = () => {
       title: 'NON-DIAGNOSTIC',
       icon: '📊',
       color: 'sage',
-      disclaimer: '⚠️ Market clearly as Screening & Support Profile – NOT diagnosis',
+      disclaimer: '⚠️ Screening & Support Profile – NOT diagnosis',
       items: [
         {
           type: 'Autism Screening & Support Profile',
@@ -80,7 +80,7 @@ const Service = () => {
     {
       id: 3,
       category: 'C. WhatsApp Parent Support Community',
-      title: 'RECURRING INCOME',
+      title: '',
       icon: '💬',
       color: 'gold',
       items: [
@@ -103,13 +103,13 @@ const Service = () => {
     {
       id: 4,
       category: 'D. School & Teacher Training',
-      title: 'HIGH VALUE',
+      title: '',
       icon: '🏫',
       color: 'navy',
       items: [
         {
           type: 'Autism Awareness & Classroom Support Training',
-          audience: 'Private schools, faith-based schools, caregivers',
+          audience: 'Educators and all in-school service provider',
           topics: [
             'Understanding autism',
             'Managing behaviors',

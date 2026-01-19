@@ -37,7 +37,7 @@ const Navbar = () => {
             className="flex items-center cursor-pointer"
             onClick={() => handleNavClick('/')}
           >
-            <img src='https://ucarecdn.com/6d8418de-73c8-4653-a42c-fe4faad98376/logoPhotoroom.png' alt="logo" className="w-[90px]" />
+            <img src='https://ucarecdn.com/6d8418de-73c8-4653-a42c-fe4faad98376/-/preview/569x438/' alt="logo" className="w-[90px]" />
           </motion.div>
 
           {/* Desktop Menu */}
