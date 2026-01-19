@@ -69,7 +69,7 @@ const Navbar = () => {
             </button>
 
             <button
-              onClick={() => handleNavClick('book')}
+              onClick={() => handleNavClick('consultation')}
               className="bg-[#1F2A44] text-white px-6 py-2.5 rounded-full font-medium hover:bg-[#6FAF9E] transition shadow-lg"
             >
               Book Consultation
@@ -127,7 +127,7 @@ const Navbar = () => {
             </button>
 
             <button
-              onClick={() => handleNavClick('book')}
+              onClick={() => handleNavClick('consultation')}
               className="hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-tr-3xl duration-300 hover:shadow-lg text-[13px] gap-2 lg:text-[17px] flex justify-center items-center w-full bg-white text-[#6FAF9E] py-3.5 rounded-tr-3xl rounded-bl-3xl font-semibold shadow-xl hover:bg-brand-sage hover:text-white transition"
             >
               <MessageCircleCode className="w-5 h-5"/>

@@ -335,13 +335,14 @@ const Service = () => {
             Need help choosing the right program?
           </h2>
           <p className="text-gray-200 mb-8 lg:text-xl text-[15px]">
-            Schedule a free 20-minute consultation with our specialists
+            Schedule a 20-minute consultation with our specialists
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pb-10">
-            <button 
+            <button
+            onClick={()=>alert("hello")} 
                  className="hover:rounded-tl-3xl hover:rounded-tr-3xl hover:shadow-lg bg-white text-brand-navy px-8 py-3 rounded-tl-3xl rounded-br-3xl font-semibold hover:bg-brand-navy hover:text-white hover:border-2 transition-colors duration-300 shadow-lg"
             >
-              Book Free Consultation
+              Book Consultation
             </button>
             <button 
                       className="hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-tr-3xl hover:shadow-lg bg-transparent border-2 border-white text-white px-6 py-3 rounded-tr-3xl rounded-bl-3xl font-semibold hover:border-2 transition-colors duration-300"

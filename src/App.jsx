@@ -10,6 +10,8 @@ import Services from "./pages/Services";
 import Programs from "./pages/Programs";
 import AutismLoader from "./components/Loader/AutismLoader";
 import { ArrowUp } from 'lucide-react';
+import Pricing from './pages/Pricing';
+import ClientIntakeForm from './pages/ClientIntakeForm';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -76,6 +78,8 @@ function App() {
           <Route path="/disclaimer" element={<DisclaimerPage />} />
           <Route path="/service" element={<Services />} />
           <Route path="/programs" element={<Programs />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/consultation" element={<ClientIntakeForm />} />
         </Routes>
       </main>
 
