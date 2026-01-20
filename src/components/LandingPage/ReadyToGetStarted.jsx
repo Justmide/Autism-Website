@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 const ReadyToGetStarted = () => {
+  const navigate = useNavigate();
   return (
    <>
            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
@@ -18,6 +20,7 @@ const ReadyToGetStarted = () => {
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
+                  onClick={() => navigate('/consultation')}
                   className="bg-white text-brand-navy px-8 py-3 rounded-tl-3xl rounded-br-3xl font-semibold hover:bg-brand-navy hover:text-white hover:border-2 transition-colors duration-300 shadow-lg"
                   data-aos="fade-up"
                   data-aos-delay="200"
@@ -25,6 +28,7 @@ const ReadyToGetStarted = () => {
                   Book Consultation
                 </button>
                 <button 
+                  onClick={() => navigate('/service')}
                   className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-tr-3xl rounded-bl-3xl font-semibold hover:border-2 hover:border-brand-navy transition-colors duration-300"
                   data-aos="fade-up"
                   data-aos-delay="300"

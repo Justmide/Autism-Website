@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 import { 
   Brain, Target, Users as UsersIcon, Award, 
   BookOpen, Video, Award as AwardIcon,
@@ -10,6 +11,7 @@ import {
 } from 'lucide-react';
 
 const Programs = () => {
+  const navigate = useNavigate();
   const weeks = [
     {
       week: 1,
@@ -255,6 +257,7 @@ const Programs = () => {
               ))}
             </ul>
             <motion.button
+              onClick={() => navigate('/consultation')}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full bg-brand-gold text-white py-4 rounded-full font-bold hover:bg-brand-gold/90 transition-colors shadow-lg"
@@ -286,6 +289,7 @@ const Programs = () => {
               ))}
             </ul>
             <motion.button
+              onClick={() => navigate('/consultation')}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full bg-brand-navy text-white py-4 rounded-full font-bold hover:bg-brand-sage transition-colors"

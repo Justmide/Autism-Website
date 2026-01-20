@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 const Service = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({ duration: 600, once: true });
   }, []);
@@ -306,13 +308,14 @@ const Service = () => {
                             </div>
 
                             <button
+                              onClick={() => navigate('/consultation')}
                               className="w-full py-3 px-6 rounded-lg font-semibold bg-brand-navy text-white hover:bg-white hover:text-brand-navy hover:border-2 hover:border-brand-navy hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-tr-3xl transition-all duration-300 hover:shadow-lg"
                             >
                               Get Started
                             </button>
 
                             <div className="mt-4 text-center">
-                              <button className="text-sm font-medium hover:underline" style={{ color: getTextColor(service.color) }}>
+                              <button onClick={() => navigate('/consultation')} className="text-sm font-medium hover:underline" style={{ color: getTextColor(service.color) }}>
                                 Schedule a consultation →
                               </button>
                             </div>
@@ -339,17 +342,18 @@ const Service = () => {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center pb-10">
             <button
-            onClick={()=>alert("hello")} 
+            onClick={() => navigate('/consultation')}
                  className="hover:rounded-tl-3xl hover:rounded-tr-3xl hover:shadow-lg bg-white text-brand-navy px-8 py-3 rounded-tl-3xl rounded-br-3xl font-semibold hover:bg-brand-navy hover:text-white hover:border-2 transition-colors duration-300 shadow-lg"
             >
               Book Consultation
             </button>
-            <button 
+            {/* <button 
+                      onClick={() => alert('Program guide download coming soon!')}
                       className="hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-tr-3xl hover:shadow-lg bg-transparent border-2 border-white text-white px-6 py-3 rounded-tr-3xl rounded-bl-3xl font-semibold hover:border-2 transition-colors duration-300"
             
             >
               Download Program Guide
-            </button>
+            </button> */}
           </div>
         </div>
       </div>

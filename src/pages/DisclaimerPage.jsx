@@ -229,7 +229,7 @@ const DisclaimerPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
-                onClick={() => navigate('/contact')} // Update this to your contact route
+                onClick={() => window.location.href = 'mailto:hello@spedeveryday.com'}
                 className="bg-white text-brand-navy px-8 py-3 rounded-full font-semibold hover:bg-brand-bg transition-colors duration-300 shadow-lg flex items-center justify-center gap-2"
               >
                 <Mail className="w-5 h-5" />

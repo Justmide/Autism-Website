@@ -1,5 +1,6 @@
 import React from 'react';
 import { HeartHandshake, Mail, Phone } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import logo from "../assets/logo-Photoroom.png";
 
 const Footer = () => {
@@ -11,7 +12,7 @@ const Footer = () => {
           {/* Logo */}
           <div className="flex md:justify-start justify-center items-center gap-3">
             <div className="rounded-lg flex items-center justify-center text-gray-900">
-             <img src={logo} alt="logo" className="w-12 sm:w-16 md:w-[90px]" />
+             <img src={logo} alt="SpedEveryday logo" className="w-12 sm:w-16 md:w-[90px]" />
             </div>
             <div>
               <h3 className="font-bold text-base sm:text-lg">SpedEveryday</h3>
@@ -44,10 +45,21 @@ const Footer = () => {
         {/* Legal Links */}
         <div className="mt-8 pt-8 border-t border-gray-800 text-center">
           <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400">
-            {['Privacy', 'Terms', 'Disclaimer', 'Contact'].map((item) => (
-              <a key={item} href="#" className="hover:text-white transition-colors">
-                {item}
-              </a>
+            {[
+              { label: 'Privacy', href: '#' },
+              { label: 'Terms', href: '#' },
+              { label: 'Disclaimer', href: '/disclaimer' },
+              { label: 'Contact', href: 'mailto:hello@spedeveryday.com' }
+            ].map((item) => (
+              item.href.startsWith('/') ? (
+                <Link key={item.label} to={item.href} className="hover:text-white transition-colors">
+                  {item.label}
+                </Link>
+              ) : (
+                <a key={item.label} href={item.href} className="hover:text-white transition-colors">
+                  {item.label}
+                </a>
+              )
             ))}
           </div>
         </div>

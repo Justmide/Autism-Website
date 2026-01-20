@@ -18,8 +18,10 @@ import {
 } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useNavigate } from 'react-router-dom';
 
 const Pricing = () => {
+  const navigate = useNavigate();
   useEffect(() => {
     AOS.init({
       duration: 800,
@@ -81,7 +83,6 @@ const Pricing = () => {
         "6 weeks of live training",
         "All course materials",
         "Certificate of completion",
-        "Lifetime access to updates"
       ],
       buttonText: "Enroll Now",
       buttonColor: "bg-brand-gold hover:bg-brand-gold/90",
@@ -275,6 +276,7 @@ const Pricing = () => {
             Let's discuss your child's needs and find the perfect support option together.
           </p>
           <button 
+            onClick={() => navigate('/consultation')}
                         className="hover:rounded-tl-3xl hover:rounded-bl-3xl hover:rounded-tr-3xl hover:shadow-lg bg-transparent border-2 border-brand-navy text-brand-navy px-6 py-3 rounded-tr-3xl rounded-bl-3xl font-semibold hover:border-2 transition-colors duration-300"
             
             >
