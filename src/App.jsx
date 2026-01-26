@@ -17,6 +17,7 @@ import AdminDashboard from './components/Admin/AdminDashboard';
 import { supabase } from './lib/supabase';
 import Shop from './pages/Shop';
 import Cart from './pages/Cart';
+import PaymentPage from './pages/PaymentPage';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -135,6 +136,7 @@ function App() {
           <Route path="/consultation" element={<ClientIntakeForm />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/payment" element={<PaymentPage />} />
           {/* Admin Routes - No Navbar/Footer */}
           <Route path="/admin/login" element={
             adminUser ? 

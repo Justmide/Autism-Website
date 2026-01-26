@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { 
   Send, 
   Loader2, 
@@ -15,6 +16,7 @@ import {
 } from 'lucide-react';
 
 const ClientIntakeForm = () => {
+  const navigate = useNavigate();
   const [step, setStep] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
@@ -147,8 +149,8 @@ const ClientIntakeForm = () => {
     }));
   };
 
-  const sendEmailsViaResend = async () => {
-    const RESEND_API_KEY = process.env.NEXT_PUBLIC_RESEND_API_KEY;
+  const sendEmailsViaMailerSend = async () => {
+    // API Key is now handled securely in the PHP proxy script on the server
     
     // Get selected services with prices
     const selectedServices = Object.entries(formData.services)
@@ -164,8 +166,16 @@ const ClientIntakeForm = () => {
 
     // 1. EMAIL TO CLIENT (Service Confirmation)
     const clientEmail = {
-      from: 'SpedEveryday <onboarding@resend.dev>',
-      to: [formData.email],
+      from: {
+        email: 'spedeveryday@spedeveryday.com',
+        name: 'SpedEveryday'
+      },
+      to: [
+        {
+          email: formData.email,
+          name: formData.parentName
+        }
+      ],
       subject: 'Your Selected Services - SpedEveryday Autism Support',
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -214,8 +224,16 @@ const ClientIntakeForm = () => {
 
     // 2. EMAIL TO ADMIN (Full Details)
     const adminEmail = {
-      from: 'SpedEveryday <onboarding@resend.dev>',
-      to: ['admin@spedeveryday.com'], // Change to your admin email
+      from: {
+        email: 'info@spedeveryday.com',
+        name: 'SpedEveryday'
+      },
+      to: [
+        {
+          email: 'admin@spedeveryday.com',
+          name: 'Admin'
+        }
+      ],
       subject: `NEW CLIENT INTAKE: ${formData.parentName}`,
       text: `
         NEW CLIENT INTAKE FORM SUBMITTED
@@ -257,24 +275,30 @@ const ClientIntakeForm = () => {
 
     try {
       // Send client email
-      await fetch('https://api.resend.com/emails', {
+      const clientResponse = await fetch('/mail-proxy.php', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${RESEND_API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(clientEmail),
       });
 
+      if (!clientResponse.ok) {
+        console.error('Client email failed:', await clientResponse.text());
+      }
+
       // Send admin email
-      await fetch('https://api.resend.com/emails', {
+      const adminResponse = await fetch('/mail-proxy.php', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${RESEND_API_KEY}`,
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(adminEmail),
       });
+
+      if (!adminResponse.ok) {
+        console.error('Admin email failed:', await adminResponse.text());
+      }
 
       return true;
     } catch (error) {
@@ -294,8 +318,8 @@ const ClientIntakeForm = () => {
     setError('');
 
     try {
-      // Send emails via Resend
-      const emailSuccess = await sendEmailsViaResend();
+      // Send emails via MailerSend
+      const emailSuccess = await sendEmailsViaMailerSend();
       
       if (!emailSuccess) {
         throw new Error('Failed to send emails');
@@ -321,7 +345,7 @@ const ClientIntakeForm = () => {
       localStorage.setItem('spedeveryday_intake', JSON.stringify(paymentData));
       
       // Redirect IMMEDIATELY to payment page
-      window.location.href = `/payment?amount=${calculateTotal()}&email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.parentName)}`;
+      navigate(`/payment?amount=${calculateTotal()}&email=${encodeURIComponent(formData.email)}&name=${encodeURIComponent(formData.parentName)}`);
 
     } catch (err) {
       setError('Failed to submit form. Please try again or contact us directly at support@spedeveryday.com');

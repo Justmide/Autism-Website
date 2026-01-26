@@ -1,6 +1,6 @@
 # Node modules
 node_modules/
-
+mail-proxy.php
 # Build output
 build/
 dist/
