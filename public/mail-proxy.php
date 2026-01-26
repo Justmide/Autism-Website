@@ -16,9 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 // SECURELY STORE YOUR API KEYS HERE
 // ------------------------------------------------------------------
 // Replace the value below with your actual MailerSend API Key
-$mailersend_api_key = "mlsn.c681738d1ada1ce93a959721d3a6a6146df3ef5ba612a67dc99f0bdebcb382f3";
-$supabase_url = "https://agkggkrkormomjixlzwb.supabase.co";
-$supabase_anon_key = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFna2dna3Jrb3Jtb21qaXhsendiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkxNDYxNDgsImV4cCI6MjA4NDcyMjE0OH0.lO1BcQb-rOaUr1ZenBG31AuZgGxfnPKvFDGxbLdTGEg";
+
 
 // ------------------------------------------------------------------
 
